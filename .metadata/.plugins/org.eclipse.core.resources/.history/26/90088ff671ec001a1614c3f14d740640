@@ -1,0 +1,23 @@
+package com.intern.springbootjpa.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.intern.springbootjpa.model.Student;
+import com.intern.springbootjpa.repository.StudentRepository;
+
+@Controller
+public class StudentController  {
+
+	@Autowired
+	private StudentRepository repo;
+	
+	public @ResponseBody String addNewUser(@RequestParam String name,@RequestParam String rollNo) {
+		
+		Student ss = new Student();
+		ss.setName(name);
+		ss.setRollNo(rollNo);
+	}
+}

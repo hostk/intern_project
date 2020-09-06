@@ -1,0 +1,12 @@
+package com.intern.springbootjpa.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.intern.springbootjpa.model.Student;
+
+@Repository
+public interface StudentRepository extends JpaRepository<Student,Long> {
+	
+	
+
+}

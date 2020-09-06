@@ -1,0 +1,5 @@
+package com.intern.springbootjpa.repository;
+
+public interface StudentRepository extends JPARepository<Student,Long> {
+
+}

@@ -1,0 +1,45 @@
+package com.intern.springbootjba.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.intern.springbootjpa.model.Student;
+import com.intern.springbootjpa.repository.StudentRepository;
+
+@Controller
+public class StudentController  {
+
+	@Autowired
+	private StudentRepository repo;
+	
+	@PostMapping("/add")
+	public @ResponseBody String addNewUser(@RequestParam String name,@RequestParam String rollNo) {
+		
+		Student ss = new Student();
+		ss.setName(name);
+		ss.setRollNo(rollNo);
+		repo.save(ss);
+		return "Saved";
+	}
+	@GetMapping("/creates")
+	public String create_Student(Model model) {
+	model.addAttribute("student",new Student());
+	return "add_student";
+}
+	@PostMapping("/save_student")
+	public String save_student(@ModelAttribute(value="student") Student std,Model model) {
+		repo.save(std);
+		model.addAttribute("students",repo.findAll());
+		return "student_list";
+	}
+	@GetMapping("/call")
+	public @ResponseBody String test() {
+		return "Hello Test";
+	}
+}

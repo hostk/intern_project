@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="train_manager"/>
+<aop-project name="SpringBootJPA"/>
+<aop-project name="Reviews"/>
+<aop-project name="SpringBootJPA-1"/>
+</aop-reference-model>

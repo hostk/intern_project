@@ -1,0 +1,5 @@
+package com.intern.springbootjpa.controller;
+
+public class StudentController {
+
+}

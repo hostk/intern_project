@@ -1,0 +1,13 @@
+package com.intern.springbootjpa.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.intern.springbootjpa.repository.StudentRepository;
+
+@Controller
+public class StudentController  {
+
+	@Autowired
+	private StudentRepository repo;
+}

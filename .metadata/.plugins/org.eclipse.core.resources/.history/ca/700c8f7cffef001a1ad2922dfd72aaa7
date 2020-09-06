@@ -1,0 +1,43 @@
+package com.ucs.edu.Review.cotroller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.ucs.edu.Review.model.Location;
+import com.ucs.edu.Review.model.Product;
+import com.ucs.edu.Review.repository.BrandRepository;
+import com.ucs.edu.Review.repository.CategoryRepository;
+import com.ucs.edu.Review.repository.LocationRepository;
+import com.ucs.edu.Review.repository.ProductRepository;
+import com.ucs.edu.Review.repository.ShopRepository;
+
+@Controller
+public class ReviewController {
+
+	
+	@Autowired
+	private BrandRepository b_repo;
+	private CategoryRepository c_repo;
+	private LocationRepository l_repo;
+	private ShopRepository s_repo;
+	private ProductRepository p_repo;
+	
+	@GetMapping("/create")
+	public String createReview(Model model) {
+		model.addAttribute("products", new Product());
+		model.addAttribute("location", new Location());
+		model.addAttribute("categorys", c_repo.findAll());
+		return "create_review";
+	}
+	@PostMapping("/save_review")
+	public String saveReview(@ModelAttribute(value="products")Product product,@ModelAttribute(value="location")Location location,Model model) {
+		p_repo.save(product);
+		l_repo.save(location);
+		model.addAttribute("products", p_repo.findAll());
+		return "review_list";
+	}
+}
